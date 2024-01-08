@@ -300,79 +300,442 @@ ex) 무신사 홈페이지에서 내가 어느 대분류, 중분류, 소분류�
 - body의 **주요** 콘텐츠를 나타낸다
   → dominant content
 
+## 2. sections
+
 ### article
 
-- **독립적**으로 구분해 배포하거나 재사용할 수 있는 구획
-- 게시판, 블로그 글, 매거진, 뉴스 기사
-  - 기사 홈페이지 메인 화면에서 기사 배너 하나(`article`)가 생략되더라도 전체 흐름에 영향을 주지 않음
+`section` 태그와 유사하게 헤더 태그를 넣어주는 것이 권장된다.
+
+article 태그 내부의 요소들은 하나의 독립적인 컨텐츠로 취급
 
 ### section
 
-- section도 구획을 나누는 데 사용하지만, 제목 요소를 자식으로 포함해야 한다.
+- **어떤 제목으로 엮을 수 있는 하나의 영역**
 
-📌 `div`와의 차이점?
-의미를 가지고 구획을 나눈다. 디자인상의 이유만으로 `section`을 나누지 X.
-
-📝 예시
-가령 다음 포털의 로그인과 핫딜 영역을 모두 묶어 `section`으로 구분하는 것은 좋은 선택이 아니다.
-
-‘로그인, 핫딜 섹션’ 이라고 이름을 짓는 것도 적합하지 ❌
-`section` 대신 `div`로 로그인, 핫딜 영역을 구분하기 ⭕
+❗`section` 요소에는 제목 요소가 필요하기 때문에 `section`의 첫 자식으로는 `헤더 태그`가 들어간다.
 
 ### aside
 
-- 각주, 광고 배너
-  <br/>
+- 문서 본문의 내용과 직접적 상관은 없고 보조적 역할
+- ex. 다음 탑 화면(메인 화면)의 기획전 광고
 
 ## 3. Contents
 
 ### h1, h2, h3, h4, h5, h6
 
-heading 태그들은 보통 section 태그로 묶어서 쓴다.
+- heading 태그로 1~6이 범위이다
+- `h1` 태그는 한 문서에 한 개가 주어져야 한다.
+- 부모-자식 관계를 만들고자 한다면 `h1 → h2 → h3` … 반드시 순서대로 태그를 사용해야 한다.
+  - `h1 → h3` 이런 식으로 단계를 건너뛰는 것은 권장되지 않는다.
+- block 레벨 요소
 
 ### a
 
-```html
-<!-- <a> 요소로 아래의 구획에 연결 -->
-<p><a href="#Section_further_down">아래 제목으로 건너뛰기</a></p>
+- 하이퍼링크 생성
+- `href` : hypertext reference (하이퍼텍스트 참조)
 
-<!-- 링크가 향할 제목 -->
-<h2 id="Section_further_down">아래의 제목</h2>
+  - `tel` : 전화번호
+  - `mailto` : 이메일 주소
+  - tel, mailto a 태그 클릭 시 윈도우는 메일, 맥은 페이스타임 등 관련 프로그램으로 연결시켜준다.
+    ```html
+    <a href="mailto:google@gmail.com">google@gmail.com</a>
+    <a href="tel:010-0000-0000">010-2423-4894</a>
+    ```
+
+- target 속성값
+  - `_self` : 현재 페이지에서 바로 새 페이지 오픈
+    ```html
+    <a href="mailto:google@gmail.com">google@gmail.com</a>
+    <a href="tel:010-0000-0000">010-2423-4894</a>
+    <a href="test.html">test로 이동합니다.</a>
+    ```
+  - `_blank` : 현재 페이지가 아니라 별도의 새 탭에서 페이지 오픈
+- `download` : 링크로 이동하지 않고 사용자에게 URL에 위치하는 대상을 저장할지 물어본다. 브라우저가 바로 열 수 있는 파일이면 열어준다.
+  ```html
+  <a href="test.hwp" download="hangle">test로 이동합니다.</a>
+  ```
+
+### p
+
+- 블록 요소
+- 문단을 나타내며 이미, 입력 폼 등 서로 관련있는 콘텐츠는 무엇이나 될 수 있음
+
+### strong
+
+- 인라인 요소, p태그 내부에서 사용 가능하다
+- 중대하거나 긴급한 콘텐츠
+- 스크린 리더로 화면을 낭독할 때 **거센 억양으로 발음됨**
+
+❓`b` 태그와 `strong` 태그의 차이는?
+
+- b 태그는 strong과 동일하게 굵은 글씨를 나타내지만 CSS가 없던 시절에 문서의 스타일을 HTML 요소를 이용해 표현하려 할 때 사용된 태그이다. **의미 없이 굵은 글씨를 표현하기 때문에 사용을 지양하자.**
+
+### br
+
+- break, 줄을 나눈다는 의미.
+
+❗줄바꿈을 위해 사용 ⭕ 간격을 벌리기 위해 여러 번 사용 ❌
+
+### hr
+
+- 이야기에서 장면 전환 또는 문단 안에서 주제가 바뀌었을 때 사용
+- 단락 구분 용도이기 때문에 `p` 태그 내에서 사용하지 않는다.
+
+### code
+
+- 짧은 코드 조각(한 줄)
+- 하이라이트는 불가
+
+### pre
+
+- HTML에 작성한 내용 그대로를 표현
+- 들여쓰기, 줄바꿈 등도 그대로 반영된다.
+
+## 4. 목록 태그
+
+### ol
+
+- 순차적 목록, 정렬되고 순서가 있는 (보통) 숫자 목록
+- `type` : 항목을 셀 때 사용할 카운터 유형(디자이너의 의도에 따라가야 하기 때문에 잘 사용 x)
+  - `1`
+  - `a`
+  - `A`
+  - …
+- `start` : 항목의 첫번째 수, 아라비아 숫자 가능
+- `reversed` : 순서 역전
+
+### ul
+
+- 비순차적 목록
+
+### li
+
+- 목록의 항목
+- 단독 사용 불가, `**ol`, `ul`의 자식요소로만 사용 가능함.\*\*
+
+❗ 참고
+
+- `ol`, `ul`의 자식요소로는 `li`만 사용할 수 있다.
+- `ol`, `ul`의 자손요소로는 다른 태그도 사용 가능
+
+### dl
+
+설명 목록
+
+https://developer.mozilla.org/ko/docs/Web/HTML/Element/dl
+
+```html
+<dl>
+  <dt></dt>
+  <dd></dd>
+</dl>
 ```
+
+## 5. Media
+
+### img
+
+- 문서에 이미지를 삽입
+- 모자이크 웹 브라우저를 개발한 **마크 로웰 앤드리슨**은 이미지 태그를 만들었다
+  - 글자와 이미지를 한 번에 보여주기 위해 모자이크 브라우저에 이미지 태그를 적용했다.
+- ❓ 넷스케이프, 내비게이터, 그리고 코드네임
+  - IE와의 경쟁 끝에 넷스케이프 내비게이터는 사업을 철수했지만 그 코드를 무료로 공개해 누구나 브라우저를 만들 수 있도록 했다.
+  - 이후로 넷스케이프를 기반으로 파이어폭스, 사파리, 오페라와 같은 브라우저들이 출시됨.
+  - Netscape의 codeName: `Mozilla`
+  - Netscape에 대한 예우로 대부분의 브라우저는 appCodeName을 `Mozilla`로, appName을 `Netscape`로 설정한다.
+- `src` : 경로
+- `alt` : 이미지에 대한 설명으로, 대체 텍스트임.
+  - 이미지 로딩에 실패했을 때 사용자에게 이미지에 대한 설명을 제공하기도
+  - 시각장애인을 위한 스크린리더를 지원하나, `alt` 텍스트와 `img` 이후 텍스트가 중복된다면 스크린리더가 두 번 이상 동일한 내용을 읽기 때문에 `alt=""` 빈 값을 부여한다.
+  - `alt` 속성값을 아예 부여하지 않는다면 이미지 소스의 경로값을 모두 읽어버리는 참사가 발생하기도..
+
+<aside>
+❓ 이미지 하단에 빈 공간이 생긴다면?
+
+</aside>
+
+이미지 요소 주변의 다른 요소에 `margin` 값을 `0`으로 주더라도 작은 간격이 계속 존재함.
+
+**`img`가 인라인 요소**이기 때문에 발생하는 현상이다.
+
+인라인 요소이기 때문에 `img`의 세로 정렬이 글자의 baseline을 따른다.
+
+아래의 초기값을 부여하면 해결할 수 있다.
+
+# 양식(form)
+
+## form
+
+- 사용자가 조작할 수 있는, 상호작용이 가능한 문서 구획
+- 입력한 데이터를 제출, 전송하기 위해 사용하기 때문에 별도로 제출할 필요가 없다면 사용하지 않아도 괜찮다.
+- **단점 : 데이터 전송 후 새로고침이 됨. (새로고침을 막는 것도 가능하기는 하다-기획에 따라 달라질것)**
+  - form 내부 데이터를 서버에 전송하면, 브라우저는 서버로부터 어떤 응답을 받을 것이라고 기대한다.
+  - 페이지를 다시 렌더링 → 갱신할 필요 없는 정보까지 다시 화면에 그리며 시간이 소요된다.
+  - ex) 가령 지도 페이지를 보는데, 다른 영역의 지도를 보려고 드래그를 할 때마다 모든 영역이 다시 렌더링되어 계속 새로고침이 된다면 매우 불편할 것.
+- ❓ `form` vs `AJAX`
+  - form을 이용해 데이터를 요청/전송해야 할 경우 : form이 필요한 경우
+  - AJAX를 이용해 데이터를 요청/전송해야 할 경우 : form이 굳이 필요 없는 경우
+
+## `method` 속성
+
+- 양식 제출에 사용할 HTTP 메서드
+  - 크게 GET, POST가 있음
+
+### POST
+
+- 양식 데이터를 요청 본문으로 전송한다.
+- 브라우저에 의해 캐시되지 않는다 → 기록이 남지 않는다는 이야기
+- POST 방식의 HTTP 요청에 의한 데이터는 쿼리문자열과는 별도로 전송된다.
+  - 쿼리를 전달하는 방식으로 데이터를 전송하지 않는다는 이야기
+- `enctype` 속성
+  - ****\*\*****\*\*****\*\*****MIME 타입(Multipurpose Internet Mail Extensions)****\*\*****\*\*****\*\*****
+    클라이언트에 전송된 문서의 다양성을 알려주기 위한 메커니즘.
+    브라우저는 리소스를 내려받았을 때 해야 할 기본 동작이 무엇인지 결정하기 위해 사용한다.
+  - `application/x-www-form-urlencoded` : 기본값
+  - `multipart/form-data`: `<input type="file">`이 존재하는 경우 사용
+
+### GET
+
+- `https://example.com**?name=한빛&age=999**`
+  - 양식 데이터를 action URL과 **?** 구분자 뒤에 이어 붙여서 전송.
+- GET 방식의 HTTP 요청은 **브라우저에 의해 캐시되어 저장**
+- 보통 쿼리 문자열에 포함되어 전송되므로 **길이의 제한**이 있음(URL 길이제한은 브라우저마다 다름)
+- POST에 비해 보안상 취약점이 존재하기 때문에 중요한 데이터는 POST 방식으로 요청해야 한다.
+
+❓ GET이 POST에 비해 장점이 존재할까?
+
+❓ GET의 보안상 취약점 더 알아보기?
+
+### name/value
+
+- 사용자가 아무것도 입력하지 않은 경우 처음 설정한 `value`값으로 서버에 데이터가 보내진다.
+- 사용자가 무언가 입력하면 `value` 값이 사용자의 입력값으로 바뀔 것.
+
+### `action` 속성
+
+- 양식 데이터를 처리할 프로그램의 URI를 적는다. 데이터를 어디로 보낼지 저장됨.
+- 지정하지 않으면 `form`이 있는 페이지의 URL로 보내진다.(자기자신에게)
+
+### `autocomplete` 속성
+
+- 이전에 입력한 내용을 브라우저가 기억하고 힌트를 제공함.
+- 해당 양식에 입력된 값이 있었다면 자동완성.
+
+## label
+
+- 이름표.
+- `form` 내부에서 사용자와의 상호작용에 사용되는 사용자 인터페이스의 항목을 나타냄.
+- 태그의 의미상 `input`과 함께 쓰는 것이 권장된다.
+
+## button
+
+- `form` 내부, 필요한 곳 어디든 배치 가능
+- `button`
+- `submit`
+- `reset`
+
+- `form` 내부에서 사용할 때는 `type`을 `submit`으로 꼭 지정할 필요는 없음
+
+### button의 타입(type=””)
+
+- `button` : 기본 타입. 기본 행동이 없음. JS와 연결.
+  - 양식 제출용이 아니면 타입을 button으로 지정하자.
+- `submit` : 서버로 양식 데이터 제출
+- `reset`: 초깃값으로 되돌림
+
+### `<a>` vs `<button>`
+
+- `a` : 하이퍼링크 기능. 다른 페이지나 페이지 내 특정 영역으로 **\*\***이동**\*\***한다.
+- `button` : 버튼 클릭 시 이 페이지 내부에서 일이 일어나기를 원한다면 사용하자
+
+## input
+
+### 공통 속성
+
+### input 유형 <input type=”_____”>
+
+중요한 몇 가지만 보기로
+
+- button
+- submit
+- reset
+- email : 이메일 입력(이메일 형식인지 확인)
+- search : 검색 문자열 입력(삭제 아이콘 포함)
+  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/5e87c611-45e0-4848-acb7-a05a17b8b7eb/Untitled.png)
+- url
+- checkbox
+- radio: 여러 항목 중 하나 선택
+
+<aside>
+🤔 **어떤걸 써야할까?**
+`<**input** type=”button” value=”버튼”>`
+`**<button type=”button">버튼</button>**`
+
+input 태그의 경우 빈태그 요소이기 때문에 `value` 특정에 텍스트 값 밖에 지정할 수 없습니다.
+button 태그의 경우 여는태그와 닫는 태그 사이에 **여러 컨텐츠 삽입**이 가능합니다!
+
+</aside>
+
+기능상의 차이는 크게 없다.
+
+button 태그는 자식 요소로 다른 요소들을 넣을 수 있다.
+
+input 태그는 닫힌 태그이기 때문에 추가적인 컨텐츠의 삽입이 어렵다.
+
+button 태그처럼 열고 닫는 태그는 UI를 커스터마이징 할 수 있다.
+
+## text / password / url / search / tel
+
+- `**maxlength**`: 문자수 최대 길이
+- `**minlength**`: 문자수 최소 길이
+
+## checkbox/radio
+
+- `checkbox` : 단일 값을 선택하거나 선택 해제할 수 있음
+- `radio` : 선택 후 선택 해제가 안됨
+  - 동일한 카테고리 중 한 가지를 선택할 때 사용
+  ```html
+  <label>
+    사과
+    <input type="radio" name="과일" />
+  </label>
+  <label>
+    배
+    <input type="radio" name="과일" />
+  </label>
+  <label>
+    수박
+    <input type="radio" name="과일" />
+  </label>
+  ```
+
+## fieldset
+
+- 반드시 `legend`로 제목을 부여한다.
+
+### legend
+
+```html
+<fieldset>
+  <legend>아무거나</legend>
+  <label for="animals">동물을 선택하세요: </label>
+  <select id="animals">
+    <optgroup label="포유류">
+      <option>원숭이</option>
+      <option>개</option>
+      <option>고양이</option>
+    </optgroup>
+    <optgroup label="파충류">
+      <option>도마뱀</option>
+      <option>뱀</option>
+    </optgroup>
+  </select>
+</fieldset>
+```
+
+## textarea
+
+- 여러 줄의 text를 입력받을 수 있다
+
+### textarea 속성
+
+- `rows`, `cols`를 통해 입력창의 줄 수와 너비를 나타낸다.
+- 텍스트 크기도 영향을 주기 때문에 `cols` 수 만큼 글자를 입력할 수 있다는 의미는 아님
+- `rows`도 처음 보여지는 행의 개수이고 사용자가 `textarea` 크기를 조절할 수 있음
+  - 사용자가 크기를 조절하는 것을 막고 싶다면
+    ```html
+    textarea{ resize:none; }
+    ```
+
+# 표(table)
+
+- `<table>`은 테이블 데이터의 컨테이너 요소이다.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/3b60b9a9-5b13-499d-b46a-d9b2b670ec7b/Untitled.png)
+
+## tr, th, hd
+
+- `tr` : table row. 테이블의 행
+- `th` : table header. 테이블의 행, 열의 제목을 나타내는 셀
+- `td` : table data. 셀 내용
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/830aed61-4fb0-4e48-95d9-5e50b2720ee8/Untitled.png)
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      p {
-        display: inline; // 한 라인을 다 차지하다가 이제는 요소 자체의 영역만 차지함.
-        background-color: teal;
+      table {
+        border-collapse: collapse; /**/
       }
 
-      section {
-        height: 1000px;
+      table,
+      th,
+      td {
+        border: 1px solid black;
       }
     </style>
   </head>
+
   <body>
-    <!-- <a> 요소로 아래의 구획에 연결 -->
-    <p><a href="#Section_further_down">아래 제목으로 건너뛰기</a></p>
-    <section>hello</section>
-    <!-- 링크가 향할 제목 -->
-    <section>
-      <h2 id="Section_further_down">아래의 제목</h2>
-    </section>
+    <table>
+      <tr>
+        <th>월요일</th>
+        <th>수요일</th>
+        <th>금요일</th>
+      </tr>
+      <tr>
+        <td>짜장면</td>
+        <td>짬뽕</td>
+        <td>탕수육</td>
+      </tr>
+      <tr>
+        <td>짜장면</td>
+        <td>짬뽕</td>
+        <td>탕수육</td>
+      </tr>
+      <tr>
+        <td>짜장면</td>
+        <td>짬뽕</td>
+        <td>탕수육</td>
+      </tr>
+      <tr>
+        <td>짜장면</td>
+        <td>짬뽕</td>
+        <td>탕수육</td>
+      </tr>
+    </table>
   </body>
 </html>
 ```
 
-- a 태그 href 속성의 '#' 값 : 페이지 내부에서 다른 요소로 이동할 때 사용
-- 클릭 이벤트가 발생할 때 페이지 전환이 되지 않도록 하기 위해 쓴다는 것은 부차적인 내용이다.
+## caption
+
+- CSS `caption-side` 속성 : 많이 사용은 안하지만 caption의 위치 설정 가능
+
+## thead, tbody, tfoot
+
+- 선택적으로 사용하면 됩니다. 필수 요소는 아닙니다. 코드의 가독성을 위해 명시적으로 사용하면 좋습니다
+
+## 속성값
+
+### colspan, rowspan
+
+- 셀병합 속성
+- `colspan` : 열 병합
+- `rowspan` : 행 병합
+
+## colgroup
+
+## col
+
+- col에 영향을 주는 CSS 요소
+  https://www.w3.org/TR/CSS21/tables.html#columns
+
+## time
+
+https://developer.mozilla.org/ko/docs/Web/HTML/Element/time
