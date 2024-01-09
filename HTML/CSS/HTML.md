@@ -1,3 +1,5 @@
+- reference : 이스트소프트 오르미 백엔드 개발자 양성과정 4기 - 한재현 강사님 교안
+
 HTML 강의를 수강하며 새로 배운 부분들과 이미 알고 있었더라도 다시 한 번 정리하기 위한 내용들을 적어봅니다.
 
 HTML을 안다고 생각했지만 HTML 자체와 개별 태그가 실제로 가지는 의미를 다시 정리하니 모르는 부분들이 생각보다 많이 나와 다시 정리를 해본다.
@@ -488,7 +490,7 @@ https://developer.mozilla.org/ko/docs/Web/HTML/Element/dl
 - POST 방식의 HTTP 요청에 의한 데이터는 쿼리문자열과는 별도로 전송된다.
   - 쿼리를 전달하는 방식으로 데이터를 전송하지 않는다는 이야기
 - `enctype` 속성
-  - ****\*\*****\*\*****\*\*****MIME 타입(Multipurpose Internet Mail Extensions)****\*\*****\*\*****\*\*****
+  - \***\*\*\*\*\***\*\*\***\*\*\*\*\***MIME 타입(Multipurpose Internet Mail Extensions)\***\*\*\*\*\***\*\*\***\*\*\*\*\***
     클라이언트에 전송된 문서의 다양성을 알려주기 위한 메커니즘.
     브라우저는 리소스를 내려받았을 때 해야 할 기본 동작이 무엇인지 결정하기 위해 사용한다.
   - `application/x-www-form-urlencoded` : 기본값
@@ -567,9 +569,9 @@ https://developer.mozilla.org/ko/docs/Web/HTML/Element/dl
 - radio: 여러 항목 중 하나 선택
 
 <aside>
-🤔 **어떤걸 써야할까?**
+** 🤔 어떤걸 써야할까?**
 `<**input** type=”button” value=”버튼”>`
-`**<button type=”button">버튼</button>**`
+`**<button type="button">버튼</button>**`
 
 input 태그의 경우 빈태그 요소이기 때문에 `value` 특정에 텍스트 값 밖에 지정할 수 없습니다.
 button 태그의 경우 여는태그와 닫는 태그 사이에 **여러 컨텐츠 삽입**이 가능합니다!
@@ -586,8 +588,8 @@ button 태그처럼 열고 닫는 태그는 UI를 커스터마이징 할 수 있
 
 ## text / password / url / search / tel
 
-- `**maxlength**`: 문자수 최대 길이
-- `**minlength**`: 문자수 최소 길이
+- **`maxlength`**: 문자수 최대 길이
+- **`minlength`**: 문자수 최소 길이
 
 ## checkbox/radio
 
@@ -651,15 +653,11 @@ button 태그처럼 열고 닫는 태그는 UI를 커스터마이징 할 수 있
 
 - `<table>`은 테이블 데이터의 컨테이너 요소이다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/3b60b9a9-5b13-499d-b46a-d9b2b670ec7b/Untitled.png)
-
 ## tr, th, hd
 
 - `tr` : table row. 테이블의 행
 - `th` : table header. 테이블의 행, 열의 제목을 나타내는 셀
 - `td` : table data. 셀 내용
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/830aed61-4fb0-4e48-95d9-5e50b2720ee8/Untitled.png)
 
 ```html
 <!DOCTYPE html>
