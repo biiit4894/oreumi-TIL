@@ -1,4 +1,4 @@
-- reference : 이스트소프트 오르미 백엔드 개발자 양성과정 4기 - 한재현 강사님 교안
+- reference : 이스트소프트 오르미 백엔드 개발자 양성과정 4기 - 위니브 소속 강사님 교안
 
 # CSS 기본
 
@@ -944,17 +944,12 @@ p.text {
 </head>
 
 <body>
-  <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure vero reprehenderit molestias, voluptas,
-    excepturi
-    perferendis aspernatur officiis doloremque ullam exercitationem dolorum quod labore? Iure ad eligendi sequi modi ab
-    perspiciatis!</p>
+  <p class="text">Lorem ipsum dolor sit amet </p>
 
 </body>
 
 </html>
 ```
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/beee737f-bc3c-449c-9dc6-a94b8abb3471/Untitled.png)
 
 ## width
 
@@ -1005,21 +1000,13 @@ p.text {
 </head>
 
 <body>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure vero reprehenderit molestias, voluptas,
-    excepturi
-    perferendis aspernatur officiis doloremque ullam exercitationem dolorum quod labore? Iure ad eligendi sequi modi ab
-    perspiciatis!</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure vero reprehenderit molestias, voluptas,
-    excepturi
-    perferendis aspernatur officiis doloremque ullam exercitationem dolorum quod labore? Iure ad eligendi sequi modi ab
-    perspiciatis!</p>
+  <p>Lorem ipsum dolor sit amet</p>
+  <p>Lorem ipsum dolor sit amet</p>
 
 </body>
 
 </html>
 ```
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/78357678-4227-4a24-8698-e37c434a6b30/Untitled.png)
 
 p 요소 사이에 60px의 margin이 존재하지 않고 30px
 
@@ -1058,14 +1045,8 @@ p 요소 사이에 60px의 margin이 존재하지 않고 30px
 </head>
 
 <body>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure vero reprehenderit molestias, voluptas,
-    excepturi
-    perferendis aspernatur officiis doloremque ullam exercitationem dolorum quod labore? Iure ad eligendi sequi modi ab
-    perspiciatis!</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure vero reprehenderit molestias, voluptas,
-    excepturi
-    perferendis aspernatur officiis doloremque ullam exercitationem dolorum quod labore? Iure ad eligendi sequi modi ab
-    perspiciatis!</p>
+  <p>Lorem ipsum dolor sit amet </p>
+  <p>Lorem ipsum dolor sit amet </p>
 
 </body>
 
@@ -1101,3 +1082,508 @@ p 요소 사이에 60px의 margin이 존재하지 않고 30px
 ## opacity
 
 - 투명도
+
+# form 관련 가상 선택자
+
+- `:enabled`, `:disabled` : form 활성화 /비활성화 상태일때로 처리
+  - ex) `<input type=”password” disabled>` → 비활성화 처리
+- `:read-only`, `:read-write` : 사용자가 편집할수 없는/있는 상태일 때
+- `:checked` : `input` `checkbox` `radio` 유형일때 선택된 상태
+  - ex) <option checked>
+- `:required` : 필수입력값일 경우
+- **`::placeholder` :**입력에 대한 추가 정보가 있을 경우, 힌트를 가지고 있는 요소가 있는 경우 해당 요소를 선택함.
+
+# position
+
+## 1. position이란?
+
+- HTML 태그의 위치를 지정해준다.
+- ❓ position의 단점
+  - top, left, right 등 값을 일일이 지정해야 하기 때문에 자주 사용하지는 않는다.
+  - normal flow를 따라가는 `margin` 값을 줘서 다른 요소들과 상호작용하며 위치를 동적으로 설정하게 하는 것(다른 요소들과 겹치지 않으며 어울리게 함)이 더 효율적이다.
+
+## 2. position의 종류
+
+### 2.1. position: static
+
+- position 속성값을 주지 않았을 경우의 기본값.
+- `html`에 쓴 태그 순으로 정상적인 흐름(normal flow)에 따라 위치가 지정된다. 위에서 아래로, 부모에서 자식으로, 형제로 순서대로 요소를 인식한다.
+
+### 2.2 position: relative
+
+- 자신이 원래 있던 자리를 기억하고, 그 자리를 기준으로 자신의 위치를 잡는다.
+- 자신이 원래 있어야 하는 위치에 상대적이다.
+- `position:relative` 속성값이 있는 요소는 없는 요소를 경우에 따라 가려버릴 수 있다.
+
+```css
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>static</title>
+  <style>
+    .box1 {
+      **position: relative;**
+      background-color: green;
+      color: white;
+      width: 100px;
+      height: 100px;
+    }
+
+    .box2 {
+      **top: 20px;
+      left: 30px;
+      position: relative;**
+      background-color: red;
+      color: white;
+      width: 100px;
+      height: 100px;
+    }
+
+    .box3 {
+      **position: static;**
+      background-color: blue;
+      color: white;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1">box1</div>
+  <div class="box2">box2</div>
+  <div class="box3">box3</div>
+</body>
+
+</html>
+```
+
+### 2.3. position: absolute
+
+- static을 제외한 position 속성값을 가진 **가장 가까운 부모**(직계/조상 무관)**의 박스**를 기준으로 위치한다.
+- 부모 요소가 없는 경우 HTML의 루트요소(=<HTML></HTML>)을 기준으로 위치를 잡게 된다.
+- ❓ static 요소를 기준으로 위치를 잡지 않는 이유는 무엇일까?
+  - static 값은 모든 요소가 가지고 있기 때문이 아닐까?
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>static</title>
+    <style>
+      .box1 {
+        position: relative;
+        background-color: green;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .box2 {
+        **top: 20px;
+        left: 30px;**
+        **position: absolute;**
+        background-color: red;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .box3 {
+        position: static;
+        background-color: blue;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+  </body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>static</title>
+    <style>
+      .box1 {
+        position: relative;
+        background-color: green;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .box2 {
+        **top: 20px;
+        left: 30px;
+        position: absolute;**
+        background-color: red;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .box3 {
+        position: static;
+        background-color: blue;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .parent {
+        position: relative;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box1">box1</div>
+    **
+    <div class="parent">
+      <div class="box2">box2</div>
+    </div>
+    **
+    <div class="box3">box3</div>
+  </body>
+</html>
+```
+
+`position:absolute`은 normal flow를 벗어나 빈 자리를 만든다. normal flow를 벗어난 absolute의 위치를 다른 static 요소의 자리를 자치한 모습니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>static</title>
+    <style>
+      .box1 {
+        position: relative;
+        background-color: green;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .box2 {
+        /* top: 20px;
+      left: 30px; */
+        position: absolute;
+        background-color: red;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .box3 {
+        position: static;
+        background-color: blue;
+        color: white;
+        width: 100px;
+        height: 100px;
+      }
+
+      .parent {
+        position: relative;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box1">box1</div>
+    <div class="parent">
+      <div class="box2">box2</div>
+    </div>
+    <div class="box3">box3</div>
+  </body>
+</html>
+```
+
+top, left값을 제거하니 부모 요소의 위치를 기준으로 위치하며 box3를 가려버린다
+
+### 2.4 position : fixed
+
+- 사용자가 보고 있는 브라우저 화면(viewport)을 기준으로 그 자리에 고정되어 위치함
+- 최상단 (0,0) 지점에 바로 위치하게 하고 싶다면 top, right, bottom, left 값을 줄 필요가 없음.
+- 모달창 제작에 자주 사용한다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .nav {
+        font-family: "Pacifico", cursive;
+        position: fixed;
+        padding: 10px;
+        background-color: brown;
+        color: white;
+        font-size: 28px;
+        width: 100%;
+        height: 45px;
+      }
+
+      .container {
+        margin-top: 0;
+        padding-top: 120px;
+        margin-left: 20px;
+      }
+
+      .dark-mode {
+        font-family: "Pacifico", cursive;
+        font-size: 23px;
+        position: fixed;
+        width: 200px;
+        height: 40px;
+        background-color: brown;
+        border-radius: 7px;
+        color: white;
+        bottom: 50px;
+        right: 50px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">hello</div>
+    <div class="container">
+      (lorem+br)*100
+      <!--emit 태그이기 때문에 tab 누르기 !-->
+    </div>
+    <div class="dark-mode">dark</div>
+  </body>
+</html>
+```
+
+### 2.5 position : sticky
+
+- 조상에 스크롤이 있으면 가장 가까운 부모 요소의 컨텐츠 영역에 달라붙는다.
+- IE 미지원
+- can I use 조회 시 WD(working directory)로 조회되며 아직은 웹 표준이 아니다. 특정 브라우저에서는 미지원
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <style>
+      section {
+        height: 1000px;
+        border: 3px solid black;
+      }
+
+      h2 {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0px;
+        background: greenyellow;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>sticky test</h1>
+    <section>
+      <h2>오늘의 메뉴1</h2>
+      <ul>
+        <li>Lorem ipsum dolor sit amet</li>
+        <li>Explicabo magni quidem</li>
+        <li>Mollitia, molestiae autem</li>
+      </ul>
+    </section>
+    <section>
+      <h2>오늘의 메뉴2</h2>
+      <ul>
+        <li>Lorem ipsum dolor sit amet</li>
+        <li>Iusto, nulla</li>
+        <li>Veritatis rem,</li>
+      </ul>
+    </section>
+    <section>
+      <h2>오늘의 메뉴3</h2>
+      <ul>
+        <li>Lorem ipsum dolor sit amet</li>
+        <li>Dolore facilis quam quaera</li>
+        <li>Voluptatem placeat non ab</li>
+      </ul>
+    </section>
+    <!-- $ : 숫자 -->
+  </body>
+</html>
+```
+
+- section 3개가 총 3000px의 높이를 가지면서 HTML 요소에 스크롤이 생겼다. h2의 조상에 스크롤이 생겼기 때문에.
+- -webkit-sticky : vendor prefix(브라우저 제조사의 접두사)
+  - webkit 기반 브라우저에서만 이런 문법을 지원한다는 이야기.
+
+### 2.6 z-index
+
+- web은 3차원 공간이기 때문에 Z축이 존재한다.
+- 기본값: `auto`
+- 요소와 요소가 겹칠 때 `z-index`를 통해 어떤 요소가 위로 나타나게 할지 결정한다.
+- static을 제외한 position 속성값이 적용되었을 때 해당 요소의 Z축 순서를 결정할 수 있다.
+- 부모가 z-index를 높여 자식 앞으로 나오기 ❌
+- 자식이 z-index를 낮춰 부모 뒤로 가기 ⭕
+  - ex) z-index가 설정되지 않은 부모 div와 z-index가 0인 자식 img가 있을 때 img의 z-index를 음수로 바꾸면 img가 뒤로 간다.
+- 부모의 z-index가 높으면 자식의 z-index는 그것보다도 상위이다. z-index는 부모를 기준으로 한다고 이해하기.
+
+# flex
+
+- 부모 요소: `flex-container`
+- 자식 요소: `flex-item`
+- flex는 직계 자식에게만 영향을 미친다.
+
+## flex-container에 사용하는 속성
+
+container에 사용하는 속성이기 때문에 item에 적용되지 않음
+
+이미지 출처: 위니브
+
+### flex-direction
+
+- 컨테이너 안에 아이템을 배치할 때 주축과 방향 지정
+- `row` : 기본값, 왼→오, 주축이 행 방향
+- `column`: 위 → 아래, 주축이 열 방향
+- `row-reverse` : 오 → 왼, 주축이 행 방향
+- `column-reverse` : 아래 → 위, 주축이 열 방향
+
+### justify-content
+
+- **주축**을 기준으로 배열의 위치를 조절하거나 아이템 간의 **간격**설정을 한다.
+- `flex-start` : flex가 시작되는 위치에 item들을 배치
+- `flex-end` : flex가 끝나는 위치에 item들을 배치
+- `center` : flex의 중간 지점에 item들을 배치
+- `space-between` : flex가 flex-start로 차지하고 남은 여백 공간을 자식요소들에게 최대한 줘서 자식 요소들이 최대한 서로 멀리 떨어져 배치되도록 함.
+- `space-around` : flex가 flex-start로 차지하고 남은 여백 공간이 자식 요소들에게 동일하게 배분된다. 자식 요소의 왼쪽, 오른족에 주어진 여백 공간의 합이 자식 요소마다 동일하다.
+- `space-evenly` :
+
+### align-items, align-content
+
+- `align-items`: **교차 축**을 기준으로 정렬
+- `align-content`: 컨테이너의 교차 축의 아이템들이 여러 줄일 때 사용한다.
+  - `flex-wrap: wrap`인 상태에서 사용해야 한다.
+  - flex-container가 자식들을 감싸야 한다는 이야기
+
+### gap
+
+- 아이템 사이의 간격 설정
+
+### flex-wrap
+
+- 한 줄 배치 vs 여러 행으로 나누어 표현할 것인지 결정
+
+### flex-flow
+
+- `flex-direction` `flex-wrap` 단축 속성
+  - ex) `flex-flow : row wrap;`
+
+## flex-item에 사용하는 속성
+
+item에 사용하는 속성이기 때문에 container에 적용되지 않음
+
+### flex-basis
+
+- item의 초기 크기 설정
+- 축의 방향에 따라 달라진다.
+  - 주축이 행이라면 가로 범위로 달라지고, 주축이 열이라면 세로 범위로 달라진다.
+  - 휴대폰 가로모드 또는 너비가 좁은 화면에 대응할 때 사용
+- 내부 콘텐츠(글씨 등)에 따라 유연한 크기를 가진다.
+
+### flex-grow
+
+- 아이템이 컨테이너에서 할당할 수 있는 공간의 정도를 지정함.
+- ex) `flex-basis: 20px; flex-grow: 1;` → 부모 요소를 다 채울 수 있을 만큼 flex-basis를 넘어 커져도 된다.
+- 부모를 통해서 채울 수 있는 잉여 공간을 자식에게 할당
+- flex-basis 값보다 커지게 하라
+
+### flex-shrink
+
+- flex-basis 값보다 작아지게 하라
+- 기본값: 1
+- 다른 요소들은 작아져도 한 요소만은 작아지게 하고 싶지 않은 경우 사용할 수 있음
+
+### align-self
+
+- 부모의 align-items 속성을 덮어 flex-item에게 개별적인 align-items 속성을 부여한다.
+- 교차축에서의 위치를 개별적으로 정할 수 있음
+- 기본값 : `stretch`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        /* width: 500px; */
+        height: 200px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        /* align-content: flex-end; */
+        /* gap: 10px; */
+        background-color: lightgray;
+      }
+
+      li {
+        flex-basis: 20;
+        flex-grow: 1;
+        height: 20px;
+        background-color: royalblue;
+        border: 2px solid black;
+      }
+
+      .third {
+        /* flex-basis: 20px; */
+        flex-shrink: 0;
+        **align-self: flex-end;**
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li class="third">3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+  </body>
+</html>
+```
+
+### flex
+
+- `flex-grow` `flex-shrink` `flex-basis` 단축 속성
