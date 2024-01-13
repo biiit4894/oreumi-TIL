@@ -189,8 +189,10 @@ function 안녕(){
 
    - 왜 함수 표현식을 더 많이 사용할까?
    - ❗ 호이스팅
+
      - 인터프리터가 변수와 함수의 메모리 공간을 선언 전에 미리 할당하는 것
      - 함수를 선언하기에 앞서 함수를 호출해도 오류가 발생하지 않는다
+
      ```jsx
      console.log(myFunction);
 
@@ -199,6 +201,7 @@ function 안녕(){
      }
      // 함수 선언문
      ```
+
    - ❓ JS는 왜 이런 장치를?
      - 상대적으로 에러 발생 가능성이 큰 JS. 인터프리터 언어의 특성상 오류 발생을 방지하는 다양한 장치가 있는 것이 아닐까?
    - ❓ 구문(Statement) Vs 표현식(Expression)
@@ -252,6 +255,7 @@ if (조건식) {
 - if문의 조건식에는 표현식으로 나타낼 수 있는 모든 것들이 들어갈 수 있음
   - ex) `if(1 < 5) { console.log("true"};` // true
 - if-else 문
+
   ```jsx
   if() {
 
@@ -259,8 +263,11 @@ if (조건식) {
 
   };
   ```
+
 - else if 문
+
   - 참을 반환하는 조건식을 만나면 해당 블록의 코드를 실행하고 조건문을 나간다.
+
   ```jsx
   if() {
 
@@ -278,6 +285,7 @@ if (조건식) {
 - `console.log`는 반환값이 없어서(`undefined`) `item`에 `undefined`가 할당된다. 이후 `item`을 콘솔로 출력하려고 하면 `undefined`가 출력된다.
 
 - 삼항 연산자도 `else if`처럼 쓸 수 있다.
+
   ```jsx
   let age = 50;
 
@@ -287,3 +295,327 @@ if (조건식) {
 
   // 중년
   ```
+
+- DOM(Document Object Model) : HTML 문서 내의 요소들을 객체로 저장해 트리 형태로 만든다
+- BOM : 브라우저에서 제공하는 기본적인 기능을 자바스크립트로제어할 수 있다.
+  - ex) `prompt()`
+
+![image](https://github.com/biiit4894/ormi-TIL/assets/82032418/40ccc4c9-d9b4-4647-bf2e-828a9493a6bf)
+
+![image](https://github.com/biiit4894/ormi-TIL/assets/82032418/69ea7eb2-0c0a-460e-8a8e-a9d267f1b9c1)
+
+![image](https://github.com/biiit4894/ormi-TIL/assets/82032418/8dc9d79b-5050-4329-bfa5-a534a2956e50)
+
+prompt에 입력하는 값은 String으로 반환된다
+
+**문제풀이**
+
+사용자로부터 입력받은 나이에 따라 다른 인사말을 콘솔로 출력하는 프로그램을 작성하세요.
+
+나이가 18세 이상이면 "안녕하세요!"를 출력하고, 10세 이상이면 "안녕! 반가워 꼬마친구! ” 를 출력하며, 10세 미만이면 “부럽다…” 를 출력합니다.
+
+```jsx
+const age = prompt("나이를 입력하세요");
+if (age >= 18) {
+  console.log("안녕하세요!");
+} else if (age >= 10) {
+  console.log("안녕! 반가워 꼬마친구!");
+} else {
+  console.log("부럽다...");
+}
+```
+
+잘 작동한다. 왜 문자열과 정수형이 비교되고 있을까?
+
+- 📌 **숫자형 문자, 암묵적 형변환**
+  - **숫자형 문자**가 존재하는 자바스크립트. 숫자형 문자와 숫자를 비교할 때 문자열이 숫자로 암묵적으로 형변환이 된다.
+    ![image](https://github.com/biiit4894/ormi-TIL/assets/82032418/c3a1dc77-de7f-43cd-82ca-575cdc61cdee)
+
+**문제풀이**
+
+사용자로부터 입력받은 성적에 따라 등급을 출력하는 프로그램을 작성하세요.
+
+성적이 90점 이상이면 "A", 80점 이상이면 "B", 70점 이상이면 "C", 60점 이상이면 "D", 그 외에는 “강해져서 돌아와라”를 출력합니다.
+
+```jsx
+const score = prompt("성적을 입력하세요");
+if (score >= 90) {
+  console.log("A");
+} else if (score >= 80) {
+  console.log("B");
+} else if (score >= 70) {
+  console.log("C");
+} else if (score >= 60) {
+  console.log("D");
+} else {
+  console.log("강해져서 돌아와라");
+}
+```
+
+삼항연산자로 풀이
+
+```jsx
+const score = prompt("성적을 입력하세요");
+
+score >= 90
+  ? console.log("A")
+  : score >= 80
+  ? console.log("B")
+  : score >= 70
+  ? console.log("C")
+  : score >= 60
+  ? console.log("D")
+  : console.log("강해져서 돌아와라");
+```
+
+삼항연산자로 풀이 정답
+
+```jsx
+const score = prompt("성적을 입력하세요");
+
+console.log(
+  score >= 90
+    ? "A"
+    : score >= 80
+    ? "B"
+    : score >= 70
+    ? "C"
+    : score >= 60
+    ? "D"
+    : "강해져서 돌아와라"
+);
+```
+
+**1.3 switch 문**
+
+```jsx
+switch (표현식) {
+	case 값1:
+		break;
+	case 값2:
+		break;
+	...
+	default:
+		// 모든 case에 해당하지 않을 경우
+		break;
+
+}
+```
+
+- default 문은 선택사항
+
+```jsx
+switch (new Date().getDay()) {
+  case 1:
+    document.write("월요일입니다.");
+    break;
+  case 2:
+    document.write("화요일입니다.");
+    break;
+  case 3:
+    document.write("수요일입니다.");
+    break;
+  case 4:
+    document.write("목요일입니다.");
+    break;
+  case 5:
+    document.write("금요일입니다.");
+    break;
+  default:
+    document.write("금금요일입니다. 주말이 뭐죠?");
+    break;
+}
+// 목요일입니다.
+```
+
+동일 코드에 break문을 일부 적용하지 않을 경우
+
+```jsx
+switch (new Date().getDay()) {
+  case 1:
+    document.write("월요일입니다.");
+    break;
+  case 2:
+    document.write("화요일입니다.");
+    break;
+  case 3:
+    document.write("수요일입니다.");
+    break;
+  case 4:
+    document.write("목요일입니다.");
+  // break;
+  case 5:
+    document.write("금요일입니다.");
+  // break;
+  default:
+    document.write("금금요일입니다. 주말이 뭐죠?");
+  // break;
+}
+```
+
+![image](https://github.com/biiit4894/ormi-TIL/assets/82032418/66870e2f-b3e6-41be-98ae-4e16c23ea479)
+
+- `new Date(`)의 결과는 문자열이 아니고 **객체**
+  - **객체 : 데이터와 함수를 갖는다.**
+    - 함수가 객체 안에 들어 있으면 **메소드**라고 부른다.
+
+**문제풀이**
+
+사용자로부터 입력받은 성적에 따라 등급을 출력하는 프로그램을 작성하세요. 성적이 90점 이상이면 "A", 80점 이상이면 "B", 70점 이상이면 "C", 60점 이상이면 "D", 그 외에는 “강해져서 돌아와라”를 출력합니다. ⇒ 이 문제를 `switch`문으로 풀어보자.
+
+```jsx
+switch (true) {
+  case score >= 90:
+    console.log("A");
+    break;
+  case score >= 80:
+    console.log("B");
+    break;
+  case score >= 70:
+    console.log("C");
+    break;
+  case score >= 60:
+    console.log("D");
+    break;
+  default:
+    console.log("강해져서 돌아와라");
+}
+```
+
+switch문에 `true` 대신 `1` 대입 시 case문의 boolean 값과 형이 맞지 않아 default문으로 빠져버림
+
+### 2. 반복문
+
+**2.1 for문의 다양한 예시**
+
+**구구단 5단만 작성해보기**
+
+작성 답안
+
+```jsx
+for (let i = 1; i < 10; i++) {
+  document.write(`5 X ${i} = ${5 * i}<br>`);
+}
+```
+
+**JavaScript 템플릿 리터럴**
+
+[Template literals (Template strings) - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+
+` ` 백틱을 이용해 작성한 문자열은 `${}` 내부에 표현식을 쓸 수 있음
+
+```jsx
+const txt = "world";
+
+`hello ${txt}`;
+
+`hello ${true ? "world" : "good bye"}`;
+```
+
+- 초기화식, 조건식을 생략가능
+
+**2.2 while문**
+
+소괄호 내부에 초기식, 조건식, 증감식을 모두 가지고 있는 for문과 달리 while문은 소괄호 내부에 조건식만을 갖는다.
+
+- **do-while 반복문**
+
+  - 조건식이 거짓이더라도 적어도 한 번은 코드가 실행되도록 하고자 할 때
+
+  ```jsx
+  do {
+    input = prompt("숫자를 입력하세요.");
+  } while (isNaN(input));
+
+  console.log("입력한 숫자는 " + input + "입니다.");
+  ```
+
+  - `NaN` : 계산 불가한 숫자. 숫자형은 맞다.
+
+**2.3 반복문의 break & continue**
+
+- `break` : 반복문 탈출
+- `continue` : for문 내부 코드에서 continue를 만나면 바로 다음 증감식으로 넘어간다.
+
+**문제풀이**
+
+while 문을 이용해서 1부터 10까지 숫자를 출력하세요. 이때 4와 7은 건너뛰고 출력합니다.
+
+```jsx
+let i = 0;
+while (i < 10) {
+  **i++; // 증감식이 앞에 위치하지 않으면 i === 4 조건에서 무한루프에 빠진다.**
+
+  if ((i === 4) || (i === 7)) {
+    continue;
+  };
+  console.log(i);
+}
+
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+// 8
+// 9
+// 10
+```
+
+`i`가 1에서 출발하도록 할 경우, 이런 코드도 동일한 결과를 출력한다.
+
+```jsx
+let i = 1;
+while (i <= 10) {
+  if (i === 4 || i === 7) {
+    i++;
+    continue;
+  }
+  console.log(i);
+  i++;
+}
+```
+
+**2.4 label**
+
+## 타입
+
+### Type이란?
+
+### 1. 원시타입 (Primitive Types)
+
+- 값 변경 불가
+- 원시 값을 다른 변수에 할당하면 **값의 참조**가 아니라 **값 자체(가리키고 있는 값을 따라가서 실제 메모리에 저장된 주소)**가 복사되어 저장된다
+- string, number, bigint, boolean, undefined, symbol, null
+
+```jsx
+const me = {
+  name: "jaehyun",
+  address: "jeju",
+  canWalk: function () {
+    console.log("재현이가 걷는다.");
+  },
+};
+```
+
+![image](https://github.com/biiit4894/ormi-TIL/assets/82032418/77b33db5-73ff-4797-8c66-babdf2de3cab)
+
+### 2. 객체타입 (Object Types)
+
+- 객체타입의 특징
+  1. 객체는 프로퍼티(자바의 필드)로 값과 메서드를 가짐.
+  2. 값을 변수에 저장할 때 값 자체가 아니라 **값의 위치**가 저장된다. 객체 값을 다른 변수에 할당할 때 **값의 참조(위치)**가 저장된다.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/e8f11927-b70c-4524-9227-a3efac08e7aa/b3121618-2c54-4a42-88b7-cd25e100f864/Untitled.png)
+
+val2, val3는 같은 주소를 가리키고 있다. 그 주소에 담긴 데이터가 [10, 1]로 변경되었기 때문에 가리키는 값이 바뀌어 보이는 것.
+
+![image](https://github.com/biiit4894/ormi-TIL/assets/82032418/1e83bfc4-36cc-44db-95db-bed982ba92ef)
+
+원시타입은 값을 변수에 저장할 때 값 자체를 저장하는 모습이다. 그러나 값은 변경 불가하다.
+
+**배열(Array)**
+
+**객체(Object)**
