@@ -1,4 +1,4 @@
-[JavaScript 핵심 개념 - 프로토타입 체이닝#1 (Prototype Chaining)](https://ji5485.github.io/post/2021-02-05/javascript-core-concept-summary-prototype-chaining-1/)
+- reference : https://ji5485.github.io/post/2021-02-05/javascript-core-concept-summary-prototype-chaining-1/
 
 ---
 
@@ -10,7 +10,7 @@
 
 _자바스크립트에서 모든 객체는 자신을 생성한 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체를 자신의 부모 객체로 설정하는 [[Prototype]] 링크로 연결한다._
 
-- \__proto__\_ ? [[Prototype]] ?_
+- \__proto\_\_\_ ? [[Prototype]] ?_
   `Object.prototype`의 `__proto__` 속성은 접근하고자 하는 객체의 내부 속성인 `[[Prototype]]`를 노출하는 접근자 속성(getter 및 setter 함수)입니다. (MDN)
 
 ```java
